@@ -3,7 +3,13 @@ import * as React from 'react';
 import getData from '../get-data';
 
 function Grid({ columnDefs, defaultColDef }) {
-  const data = React.useMemo(() => getData(10), []);
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    (async () => {
+      setData(getData(100000));
+    })();
+  }, []);
 
   return (
     <div className="ag-theme-alpine" style={{ height: '98vh' }}>
