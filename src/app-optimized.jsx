@@ -2,10 +2,12 @@ import * as React from 'react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import Grid from './components/grid';
-import NameFormatter from './components/name-formatter';
+import Grid from './components/grid-optimized';
+import NameFormatter from './components/name-formatter-optimized';
 
 import randomColor from './utils/random-color';
+
+const cellStyle = { background: `#${randomColor()}` };
 
 function App() {
   const [columnDefs, setColumnDefs] = React.useState(() => [
@@ -19,7 +21,7 @@ function App() {
 
   const updateColumns = () => {
     setColumnDefs([
-      { field: 'id', cellStyle: { background: randomColor() } },
+      { field: 'id', cellStyle },
       { field: 'first_name', cellRenderer: NameFormatter },
       { field: 'last_name' },
       { field: 'email' },
@@ -28,10 +30,10 @@ function App() {
     ]);
   };
 
-  const defaultColDef = {
+  const defaultColDef = React.useMemo(() => ({
     filter: true,
     sortable: true,
-  };
+  }), []);
 
   return (
     <div>
