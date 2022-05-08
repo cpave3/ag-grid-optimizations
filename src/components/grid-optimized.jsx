@@ -3,7 +3,6 @@ import * as React from 'react';
 import getData from '../get-data';
 
 function Grid({ columnDefs, defaultColDef }) {
-  // optimization 2
   const data = React.useMemo(() => getData(10), []);
 
   return (

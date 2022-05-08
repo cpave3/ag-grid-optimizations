@@ -7,7 +7,7 @@ import NameFormatter from './components/name-formatter-optimized';
 
 import randomColor from './utils/random-color';
 
-const cellStyle = { background: `#${randomColor()}` };
+const cellStyle = { background: randomColor() };
 
 function App() {
   const [columnDefs, setColumnDefs] = React.useState(() => [
